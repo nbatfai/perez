@@ -411,7 +411,7 @@ int main ( int argc, char **argv )
               //} else if(!bad)
               //} else if(bad <cnt/10)
             }
-          else if ( bad < 20 )
+          else if ( bad < 2 )
             {
 
               if ( ++reinforcement == 10 )

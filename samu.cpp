@@ -56,7 +56,7 @@
 
 #include <ncurses.h>
 
-std::string Samu::name {"Judah"};
+std::string Samu::name {"Perez"};
 
 #ifdef DISP_CURSES
 Disp Samu::disp;
