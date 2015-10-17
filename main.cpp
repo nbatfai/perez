@@ -65,7 +65,7 @@ void save_samu ( int sig )
   halted = true;
 
 #ifndef Q_LOOKUP_TABLE
-  std::string samuImage {"samu.image.txt"};
+  std::string samuImage {"samu.soul.txt"};
   samu.save ( samuImage );
 #endif
 
@@ -124,21 +124,21 @@ double to_samu ( int channel, std::string &msg, std::string &key )
 
 std::map<std::string, SPOTriplets> cache;
 
-int samuHasAlreadyLearned{10};
-int reinforcement{0};
+int samuHasAlreadyLearned {7};
+int reinforcement {0};
 
 double read_cache ( std::string & key, int &cnt, int &brel )
 {
   double sum {0.0};
-  int count{0};
+  int count {0};
   for ( auto const & t: cache[key] )
     {
       if ( !samu.sleep() )
         break;
-      
-      if(count++ >= samuHasAlreadyLearned)
+
+      if ( count++ >= samuHasAlreadyLearned )
         break;
-	
+
       SPOTriplets tv;
       tv.push_back ( t );
       sum += to_samu ( 12, tv );
@@ -153,7 +153,7 @@ int main ( int argc, char **argv )
 {
 
 #ifndef Q_LOOKUP_TABLE
-  std::string samuImage {"samu.image.txt"};
+  std::string samuImage {"samu.soul.txt"};
 
   std::fstream samuFile ( samuImage,  std::ios_base::in );
   if ( samuFile )
@@ -244,7 +244,7 @@ int main ( int argc, char **argv )
 
   double prev_mbrel {0};
   int mbrelc {0};
-  
+
 #ifdef SUPER_OR_REMOTE_COMP
   //for ( int ii {0}; samu.run() && ii < 1000 + 4000 + 5000 + 4000 + 1000; ++ii )
   for ( int ii {0}; samu.run() && ii < 50000; ++ii )
@@ -377,7 +377,7 @@ int main ( int argc, char **argv )
           //std::cerr << "###### " << ++j << "-th iter " << sum << std::endl;
 
           double mbrel = ( double ) brel/ ( double ) cnt;
-          int bad = ( sum - samu.get_max_reward() * cnt ) / (samu.get_min_reward() - samu.get_max_reward());
+          int bad = ( sum - samu.get_max_reward() * cnt ) / ( samu.get_min_reward() - samu.get_max_reward() );
           std::cerr << ++j
                     << "-th iter, err: "
                     << cnt*samu.get_max_reward() - sum
@@ -400,23 +400,26 @@ int main ( int argc, char **argv )
           else
             mbrelc = 0;
 
-          if ( /*mbrel > 35.0 &&*/ mbrelc > 50 && cnt-bad <= cnt- ( cnt/10 ) )
+          //if ( /*mbrel > 35.0 &&*/ mbrelc > 50 && cnt-bad <= cnt- ( cnt/10 ) )
+          if ( /*mbrel > 35.0 &&*/ mbrelc > 20 && bad >= 2 )
             {
               samu.scale_N_e();
-              N_e += 5;
+              //N_e += 5;
               mbrelc = 0;
               std::cerr << " iter, N structure rescaled " << std::endl;
 
-            //} else if(!bad)
-} else if(bad <cnt/10)
-	      {
-	      
-	      if(++reinforcement == 100)
-	      {
-	      samuHasAlreadyLearned += 10;
-	      reinforcement = 0;
-	      }
-	    }
+              //} else if(!bad)
+              //} else if(bad <cnt/10)
+            }
+          else if ( bad < 20 )
+            {
+
+              if ( ++reinforcement == 10 )
+                {
+                  samuHasAlreadyLearned += 7;
+                  reinforcement = 0;
+                }
+            }
 
           prev_mbrel = mbrel;
 
@@ -427,7 +430,7 @@ int main ( int argc, char **argv )
 
 #ifndef Q_LOOKUP_TABLE
   {
-    std::string samuImage {"samu.image.txt"};
+    std::string samuImage {"samu.soul.txt"};
     samu.save ( samuImage );
   }
 #endif

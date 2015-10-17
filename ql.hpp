@@ -416,7 +416,7 @@ public:
       //3.0 * triplet.cmp ( prev_action ) - 1.5;
       //( triplet == prev_action ) ?1.0:-2.0;
       ( triplet == prev_action ) ?max_reward:min_reward;
-      
+
     if ( prcps.find ( triplet ) == prcps.end() )
       {
 
@@ -591,7 +591,8 @@ public:
 
         for ( std::map<std::string, int>::iterator itt=it->second.begin(); itt!=it->second.end(); ++itt )
           {
-            itt->second -= ( itt->second / 5 );
+            //itt->second -= ( itt->second / 5 );
+	    itt->second *= .75;
           }
       }
 
@@ -751,7 +752,7 @@ public:
   {
     return min_reward;
   }
-  
+
 
 private:
 
@@ -781,9 +782,9 @@ private:
   std::string prev_state;
 
   double prev_reward { -std::numeric_limits<double>::max() };
-  double max_reward { 1.2 };  
-double min_reward {-3.0*max_reward};  
-  
+  double max_reward { 1.2 };
+  double min_reward {-2.0*max_reward};
+
 #ifndef CHARACTER_CONSOLE
   double prev_image [256*256];
 #else
