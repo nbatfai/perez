@@ -237,7 +237,7 @@ int main ( int argc, char **argv )
   };
 
   int j {0};
-  int N_e {5};
+  int N_e {20};
   std::string training_file = samu.get_training_file();
 
   samu.set_training_file ( "bbe" );
@@ -247,7 +247,7 @@ int main ( int argc, char **argv )
 
 #ifdef SUPER_OR_REMOTE_COMP
   //for ( int ii {0}; samu.run() && ii < 1000 + 4000 + 5000 + 4000 + 1000; ++ii )
-  for ( int ii {0}; samu.run() && ii < 50000; ++ii )
+  for ( int ii {0}; samu.run() /*&& ii < 50000*/; ++ii )
 #else
   for ( ; samu.run(); )
 #endif
