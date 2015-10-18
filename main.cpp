@@ -395,13 +395,13 @@ int main ( int argc, char **argv )
                     << " ms "
                     << std::endl;
 
-          if ( abs ( prev_mbrel - mbrel ) < 1.0 )
+          if ( abs ( prev_mbrel - mbrel ) < .5 )
             ++mbrelc;
           else
             mbrelc = 0;
 
           //if ( /*mbrel > 35.0 &&*/ mbrelc > 50 && cnt-bad <= cnt- ( cnt/10 ) )
-          if ( /*mbrel > 35.0 &&*/ mbrelc > 20 && bad >= 2 )
+          if ( /*mbrel > 35.0 &&*/ mbrelc > 40 && bad >= 2 )
             {
               samu.scale_N_e();
               //N_e += 5;
@@ -414,7 +414,7 @@ int main ( int argc, char **argv )
           else if ( bad < 2 )
             {
 
-              if ( ++reinforcement == 10 )
+              if ( ++reinforcement == 75 )
                 {
                   samuHasAlreadyLearned += 7;
                   reinforcement = 0;
