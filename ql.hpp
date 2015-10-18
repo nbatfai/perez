@@ -592,7 +592,7 @@ public:
         for ( std::map<std::string, int>::iterator itt=it->second.begin(); itt!=it->second.end(); ++itt )
           {
             //itt->second -= ( itt->second / 5 );
-	    itt->second *= .75;
+	    itt->second *= .8;
           }
       }
 
