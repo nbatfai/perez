@@ -401,7 +401,7 @@ int main ( int argc, char **argv )
             mbrelc = 0;
 
           //if ( /*mbrel > 35.0 &&*/ mbrelc > 50 && cnt-bad <= cnt- ( cnt/10 ) )
-          if ( /*mbrel > 35.0 &&*/ mbrelc > 40 && bad >= 2 )
+          if ( /*mbrel > 35.0 &&*/ mbrelc > 50 && bad >= 2 )
             {
               samu.scale_N_e();
               //N_e += 5;
@@ -414,7 +414,7 @@ int main ( int argc, char **argv )
           else if ( bad < 2 )
             {
 
-              if ( ++reinforcement == 40 )
+              if ( ++reinforcement == 80 )
                 {
                   samuHasAlreadyLearned += 7;
                   reinforcement = 0;
