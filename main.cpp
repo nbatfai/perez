@@ -395,7 +395,7 @@ int main ( int argc, char **argv )
                     << " ms "
                     << std::endl;
 
-          if ( abs ( prev_mbrel - mbrel ) < .4 )
+          if ( fabs ( prev_mbrel - mbrel ) < .4 )
             ++mbrelc;
           else
             mbrelc = 0;
