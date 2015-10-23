@@ -1,6 +1,7 @@
 # perez
 "The son of Judah is Perez." With this project, we can make experiments to see the behaviour of Samu on different parameter settings of the incremental learning.
 ![pereztui](https://cloud.githubusercontent.com/assets/3148120/10558577/2b36c840-74d5-11e5-9174-f5f8bd263cb3.png)
+See also the page [Family Robotics - Deep Q-learning with Samu](http://shrek.unideb.hu/~nbatfai/)
 
 ## Genealogy of Perez
 
